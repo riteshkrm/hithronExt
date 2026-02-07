@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Load",
+  "version": "1.5",
+  "description": "Chrome Extension",
+
+  "permissions": ["identity", "storage"],
+  "host_permissions": ["https://accounts.google.com/*"],
+
+  "oauth2": {
+    "client_id": "999017704603-vffg1d8gnf994o4hmq3muoaac1b9t0h8.apps.googleusercontent.com",
+    "scopes": ["profile", "email"]
+  },
+
+  "action": {
+    "default_popup": "index.html"
+  },
+
+  "background": {
+    "service_worker": "background.js"
+  }
+}
