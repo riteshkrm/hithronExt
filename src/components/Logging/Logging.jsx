@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './LoggingStyle.css';
+import { googleLogin, logout } from "../../utils/chromeAuth";
 
 const Logging = () => {
   const [email, setEmail] = useState('');
@@ -26,7 +27,7 @@ const Logging = () => {
         </h2>
 
         {/* Google Sign In */}
-        <button className="social-button">
+        <button className="social-button" onClick={googleLogin}>
           <i className="fab fa-google google-icon"></i>
           <span className="button-text">Sign in with Google</span>
         </button>

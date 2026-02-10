@@ -8,4 +8,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+
+  build: {
+    rollupOptions: {
+      input: {
+        background: "src/background/index.js",
+        input:"index.html"
+      },
+      output: {
+        entryFileNames: "[name].js"
+      }
+    }
+  }
 })

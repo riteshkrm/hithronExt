@@ -2,10 +2,34 @@
   "manifest_version": 3,
   "name": "Load",
   "version": "1.0.0",
-  "description": "Load Sign In Extension",
+  "description": "Load - Manage your loads efficiently",
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "asset/icons/icon16.png",
+      "48": "asset/icons/icon48.png",
+      "128": "asset/icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
   },
 
-  "permissions": []
+  "icons": {
+    "16": "asset/icons/icon16.png",
+    "48": "asset/icons/icon48.png",
+    "128": "asset/icons/icon128.png"
+  },
+  "permissions": ["identity", "storage"],
+
+  "host_permissions": ["https://accounts.google.com/*"],
+
+  "oauth2": {
+    "client_id": "999017704603-vffg1d8gnf994o4hmq3muoaac1b9t0h8.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile"
+    ]
+  }
 }

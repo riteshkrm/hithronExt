@@ -92,12 +92,12 @@ const Dashboard = () => {
       <main className="main-content">
         {/* Top Header */}
         <header className="top-header">
-          <h1 className="page-title">Welcome to LoadConnect</h1>
+          <h1 className="page-title">Welcome to Load</h1>
           <div className="user-section">
             <div className="user-avatar">
               <img src="https://ui-avatars.com/api/?name=RT&background=4A90E2&color=fff" alt="User" />
             </div>
-            <span className="user-email">rtskrm@gmail.com</span>
+            <span className="user-email">{userEmail}</span>
             <i className="fas fa-chevron-down"></i>
           </div>
         </header>
@@ -186,7 +186,7 @@ const Dashboard = () => {
           {/* Footer */}
           <footer className="dashboard-footer">
             <div className="copyright">
-              Copyright © 2026 <a href="#">LoadConnect Inc.</a> All rights reserved.
+              Copyright © 2026 <a href="#">Load Inc.</a> All rights reserved.
             </div>
             <div className="footer-links">
               <a href="#">Terms & Conditions</a>
