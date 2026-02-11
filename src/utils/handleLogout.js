@@ -1,8 +1,5 @@
 const handleLogout = () => {
-  chrome.storage.local.remove(["token"], () => {
-    setLoggedIn(false);
-    window.close();
-  });
+  chrome.runtime.sendMessage({ action: "logout" });
 };
 
 export default handleLogout;
