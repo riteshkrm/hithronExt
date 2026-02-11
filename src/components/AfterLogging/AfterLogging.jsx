@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
 import './AfterLoggingStyle.css';
+import handleLogout from '../../utils/handleLogout';
 
-const AfterLogging = () => {
+const AfterLogging = ( { setLoggedIn }) => {
   const [email, setEmail] = useState('dummy@gmail.com');
   const [template, setTemplate] = useState('Default');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,18 +12,18 @@ const AfterLogging = () => {
     alert('Email sent successfully!');
   };
 
-  const handleMenuClick = (item) => {
-    console.log('Menu item clicked:', item);
-    setMenuOpen(false);
-    if (item === 'Log Out') {
-      if (confirm('Are you sure you want to log out?')) {
-        console.log('Logging out...');
-        alert('Logged out successfully!');
-      }
-    } else {
-      alert(`Navigating to ${item}`);
-    }
-  };
+  // const handleMenuClick = (item) => {
+  //   console.log('Menu item clicked:', item);
+  //   setMenuOpen(false);
+  //   if (item === 'Log Out') {
+  //     if (confirm('Are you sure you want to log out?')) {
+  //       console.log('Logging out...');
+  //       alert('Logged out successfully!');
+  //     }
+  //   } else {
+  //     alert(`Navigating to ${item}`);
+  //   }
+  // };
 
   return (
     <div className="dashboard-container">
@@ -53,7 +54,8 @@ const AfterLogging = () => {
                 Templates
               </button>
               <div className="menu-divider"></div>
-              <button className="menu-item logout" onClick={() => handleMenuClick('Log Out')}>
+              <button className="menu-item logout" onClick={handleLogout}>  
+                {/* {() => handleMenuClick('Log Out')} */}
                 <i className="fas fa-sign-out-alt"></i>
                 Log Out
               </button>

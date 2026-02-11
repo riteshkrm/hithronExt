@@ -12,7 +12,7 @@ const Dashboard = () => {
         <div className="sidebar-header">
           <div className="sidebar-logo">
             <i className="fas fa-truck"></i>
-            {!sidebarCollapsed && <span>LoadConnect</span>}
+            {!sidebarCollapsed && <span>Load</span>}
           </div>
           <button 
             className="collapse-btn" 
@@ -97,7 +97,7 @@ const Dashboard = () => {
             <div className="user-avatar">
               <img src="https://ui-avatars.com/api/?name=RT&background=4A90E2&color=fff" alt="User" />
             </div>
-            <span className="user-email">{userEmail}</span>
+            <span className="user-email">dummy@gmail.com</span>
             <i className="fas fa-chevron-down"></i>
           </div>
         </header>
@@ -159,7 +159,7 @@ const Dashboard = () => {
               </div>
 
               <div className="tutorial-card">
-                <div className="tutorial-icon">📝</div>
+                <div className="tutorial-icon"><i className="fas fa-ellipsis-h"></i></div>
                 <h3 className="tutorial-title">How to add and switch templates</h3>
                 <p className="tutorial-desc">Create templates for various purposes</p>
                 <button className="more-btn">

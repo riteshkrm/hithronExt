@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './LoggingStyle.css';
-import { googleLogin, logout } from "../../utils/chromeAuth";
+import loginWithGoogle from '../../utils/loginWithGoogle';
+
 
 const Logging = () => {
   const [email, setEmail] = useState('');
@@ -21,13 +22,13 @@ const Logging = () => {
       </header>
 
       {/* Main Content */}
-      <div className="main-content">
+      <div className="main-content-log">
         <h2 className="title">
           Please enter your credentials to<br />sign in!
         </h2>
 
         {/* Google Sign In */}
-        <button className="social-button" onClick={googleLogin}>
+        <button className="social-button" onClick={loginWithGoogle}>
           <i className="fab fa-google google-icon"></i>
           <span className="button-text">Sign in with Google</span>
         </button>
