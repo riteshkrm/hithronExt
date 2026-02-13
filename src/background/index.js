@@ -32,9 +32,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     .then(() => {
                         chrome.identity.removeCachedAuthToken({ token: data.token }, () => {
                             chrome.storage.local.clear(() => {
-                                chrome.tabs.create({
-                                    url: chrome.runtime.getURL("login.html")
-                                });
+                                // chrome.tabs.create({
+                                //     url: chrome.runtime.getURL("login.html")
+                                // });
+                                // chrome.extension.sendMessage({ "anyname": "anything" }, function () {
+                                //     /optional callback function./alert("Something happened")
+                                // });
+                                // clearInterval(poller);
                             });
                         });
                     });
