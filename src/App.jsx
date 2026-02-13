@@ -1,5 +1,5 @@
 import React from "react";
-import {useEffect,useState  } from "react";
+import { useEffect, useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Logging/Logging";
@@ -29,7 +29,6 @@ function App() {
           element={loggedIn ? <AfterLogging setLoggedIn={setLoggedIn} /> : <Login />}
         />
 
-        {/* <Route path="/" element={<Login />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
 
       </Routes>

@@ -23,7 +23,10 @@
   },
   "permissions": ["identity", "storage", "tabs"],
 
-  "host_permissions": ["https://accounts.google.com/*"],
+  "host_permissions": [
+    "https://accounts.google.com/*" ,
+    "https://www.googleapis.com/*"
+    ],
 
   "oauth2": {
     "client_id": "657086928638-qasuviu81ojv310bg5t29h5hm4oolfao.apps.googleusercontent.com",

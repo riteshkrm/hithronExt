@@ -1,15 +1,47 @@
-import React, { useState, } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AfterLoggingStyle.css';
-import handleLogout from '../../utils/handleLogout';
+import { useNavigate } from "react-router-dom";
 
-const AfterLogging = ( { setLoggedIn }) => {
-  const [email, setEmail] = useState('dummy@gmail.com');
+const AfterLogging = ({ setLoggedIn }) => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState();
   const [template, setTemplate] = useState('Default');
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleSendEmail = () => {
-    console.log('Sending email to:', email);
-    alert('Email sent successfully!');
+  useEffect(() => {
+    // Get token from chrome storage
+    chrome.storage.local.get(["token"], (result) => {
+      const Token = result.token;
+      console.log(Token);
+
+      // Get user details  from google api
+      if (Token) {
+        fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
+          headers: {
+            Authorization: `Bearer ${Token}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setUser(data);
+            // console.log(data);
+          })
+          .catch((err) => {
+            console.error("Error fetching user:", err);
+          });
+      }
+    });
+
+  }, []);
+
+  // Logout and return logging page
+  const handleLogout = () => {
+    chrome.runtime.sendMessage({ action: "logout" });
+
+    //return logging page
+    setLoggedIn(false);
+    navigate("/", { replace: true });
   };
 
   // const handleMenuClick = (item) => {
@@ -25,6 +57,14 @@ const AfterLogging = ( { setLoggedIn }) => {
   //   }
   // };
 
+  const handleSendEmail = () => {
+    console.log('Sending email to:', email);
+    alert('Email sent successfully!');
+  };
+
+
+  if (!user) return <p>Loading...</p>;
+
   return (
     <div className="dashboard-container">
       {/* Header */}
@@ -37,11 +77,11 @@ const AfterLogging = ( { setLoggedIn }) => {
           <button className="menu-button" onClick={() => setMenuOpen(!menuOpen)}>
             <i className="fas fa-bars"></i>
           </button>
-          
+
           {/* Dropdown Menu */}
           {menuOpen && (
             <div className="menu-dropdown">
-              <button className="menu-item" onClick={() => handleMenuClick('Dashboard')}>
+              <button className="menu-item" onClick={() => { window.open("https://fuchsia-jacynth-38.tiiny.site/", "_blank"); }}>
                 <i className="fas fa-home"></i>
                 Dashboard
               </button>
@@ -54,7 +94,7 @@ const AfterLogging = ( { setLoggedIn }) => {
                 Templates
               </button>
               <div className="menu-divider"></div>
-              <button className="menu-item logout" onClick={handleLogout}>  
+              <button className="menu-item logout" onClick={handleLogout}>
                 {/* {() => handleMenuClick('Log Out')} */}
                 <i className="fas fa-sign-out-alt"></i>
                 Log Out
@@ -66,7 +106,7 @@ const AfterLogging = ( { setLoggedIn }) => {
 
       {/* User Info Bar */}
       <div className="user-info-bar">
-        <span className="user-email">{email}</span>
+        <span className="user-email">{user.email}</span>
         <span className="emails-badge">75 emails left</span>
       </div>
 
@@ -84,7 +124,7 @@ const AfterLogging = ( { setLoggedIn }) => {
         {/* Template Selector */}
         <div className="template-section">
           <label className="section-label">Select Template</label>
-          <select 
+          <select
             className="template-select"
             value={template}
             onChange={(e) => setTemplate(e.target.value)}
